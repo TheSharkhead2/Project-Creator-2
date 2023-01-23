@@ -60,7 +60,7 @@ impl ::std::default::Default for Config {
                             ProjectFile {
                                 name: "main.tex".into(),
                                 path: ".".into(),
-                                url: "".into()
+                                url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/hmcmath/main.tex".into()
                             },
                             ProjectFile {
                                 name: "hmcmath.cls".into(),
