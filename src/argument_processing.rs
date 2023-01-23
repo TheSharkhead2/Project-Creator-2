@@ -101,7 +101,7 @@ pub fn create_project(
 
     let project_path = format!("{}{}", base_path, directory_name.join("_")); // get path for project
 
-    fs::create_dir(&project_path).unwrap(); // create project directory
+    fs::create_dir_all(&project_path).unwrap(); // create project directory
 
     // find language object in config for current language. Can unwrap because we know language is safe at this point
     let language_object: Language = cfg
