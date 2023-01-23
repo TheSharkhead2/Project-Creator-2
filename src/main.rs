@@ -41,17 +41,35 @@ impl ::std::default::Default for Config {
         Self {
             languages: vec![Language {
                 name: "latex".into(),
-                project_types: vec![ProjectType {
-                    name: "default".into(),
-                    description: "A barebones latex project without a .cls file.".into(),
-                    files: vec![
-                        ProjectFile {
-                            name: "main.tex".into(),
-                            path: ".".into(),
-                            url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/default/main.tex".into(),
-                        }
-                    ],
-                }],
+                project_types: vec![
+                    ProjectType {
+                        name: "default".into(),
+                        description: "A barebones latex project without a .cls file.".into(),
+                        files: vec![
+                            ProjectFile {
+                                name: "main.tex".into(),
+                                path: ".".into(),
+                                url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/default/main.tex".into(),
+                            }
+                        ],
+                    },
+                    ProjectType {
+                        name: "hmcmath".into(),
+                        description: "The Harvey Mudd College LaTeX homework template.".into(),
+                        files: vec![
+                            ProjectFile {
+                                name: "main.tex".into(),
+                                path: ".".into(),
+                                url: "".into()
+                            },
+                            ProjectFile {
+                                name: "hmcmath.cls".into(),
+                                path: ".".into(),
+                                url: "https://raw.githubusercontent.com/hmcmathematics/hmcpset-class/master/hmcpset.cls".into(),
+                            }
+                        ]
+                    }
+                ],
             }],
         }
     }
