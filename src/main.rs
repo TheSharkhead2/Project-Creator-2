@@ -39,38 +39,46 @@ pub struct ProjectFile {
 impl ::std::default::Default for Config {
     fn default() -> Self {
         Self {
-            languages: vec![Language {
-                name: "latex".into(),
-                project_types: vec![
-                    ProjectType {
-                        name: "default".into(),
-                        description: "A barebones latex project without a .cls file.".into(),
-                        files: vec![
-                            ProjectFile {
-                                name: "main.tex".into(),
-                                path: ".".into(),
-                                url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/default/main.tex".into(),
-                            }
-                        ],
-                    },
-                    ProjectType {
-                        name: "hmcmath".into(),
-                        description: "The Harvey Mudd College LaTeX homework template.".into(),
-                        files: vec![
-                            ProjectFile {
-                                name: "main.tex".into(),
-                                path: ".".into(),
-                                url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/hmcmath/main.tex".into()
-                            },
-                            ProjectFile {
-                                name: "hmcpset.cls".into(),
-                                path: ".".into(),
-                                url: "https://raw.githubusercontent.com/hmcmathematics/hmcpset-class/master/hmcpset.cls".into(),
-                            }
-                        ]
-                    }
-                ],
-            }],
+            languages: vec![
+                Language {
+                    name: "latex".into(),
+                    project_types: vec![
+                        ProjectType {
+                            name: "default".into(),
+                            description: "A barebones latex project without a .cls file.".into(),
+                            files: vec![
+                                ProjectFile {
+                                    name: "main.tex".into(),
+                                    path: ".".into(),
+                                    url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/default/main.tex".into(),
+                                }
+                            ],
+                        },
+                        ProjectType {
+                            name: "hmcmath".into(),
+                            description: "The Harvey Mudd College LaTeX homework template.".into(),
+                            files: vec![
+                                ProjectFile {
+                                    name: "main.tex".into(),
+                                    path: ".".into(),
+                                    url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/hmcmath/main.tex".into()
+                                },
+                                ProjectFile {
+                                    name: "hmcpset.cls".into(),
+                                    path: ".".into(),
+                                    url: "https://raw.githubusercontent.com/hmcmathematics/hmcpset-class/master/hmcpset.cls".into(),
+                                }
+                            ]
+                        }
+                    ],
+                },
+                Language {
+                    name: "python".into(),
+                    project_types: vec![
+                        
+                    ]
+                }
+            ],
         }
     }
 }
