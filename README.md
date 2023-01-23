@@ -41,3 +41,4 @@ In order to get more information about a specific command or the tool itself, yo
 - Local file (included in binary) support for default templates
 - Support for having the project name be subbed into files. This can probably best be done through searching the text of each file for something like: "$PROJECT_NAME". This would let you do things like have templates that have classes named after the project itself. 
 - Add git support (specifically a .gitignore to the latex templates)
+- Wakatime support? (Though I started using an editor that doesn't support Wakatime so this is low priority and also not that hard to implement)
