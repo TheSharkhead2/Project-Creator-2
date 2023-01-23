@@ -99,7 +99,7 @@ pub fn create_project(
     // split name at spaces in order to combine with underscores
     let directory_name: Vec<&str> = name.split(' ').collect();
 
-    let project_path = format!("{}{}", base_path, directory_name.join("_")); // get path for project
+    let project_path = format!("{}/{}", base_path, directory_name.join("_")); // get path for project
 
     fs::create_dir_all(&project_path).unwrap(); // create project directory
 
