@@ -75,7 +75,17 @@ impl ::std::default::Default for Config {
                 Language {
                     name: "python".into(),
                     project_types: vec![
-                        
+                        ProjectType {
+                            name: "default".into(),
+                            description: "A template ideal for a quick python script".into(),
+                            files: vec![
+                                ProjectFile {
+                                    name: "main.py".into(),
+                                    path: "./src".into(),
+                                    url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/python/default/src/main.py".into()
+                                }
+                            ]
+                        }                        
                     ]
                 }
             ],
@@ -109,7 +119,7 @@ fn main() {
 
     // parse arguments and do stuff (very good documentation here)
     match parse_arguments(args, cfg) {
-        Ok(_) => println!(""),
+        Ok(_) => {},
         Err(Error::MissingArguments(e)) => println!("{}", e),
         Err(Error::InvalidLanguage(e)) => {
             println!(
