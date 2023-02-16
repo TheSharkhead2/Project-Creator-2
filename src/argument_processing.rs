@@ -74,7 +74,18 @@ pub fn new_parse_arguments(args: Vec<String>, cfg: Config) -> Result<(), Error> 
             path = Some(args[5].clone());
         }
 
-        create_project(&cfg, args[2].clone(), args[3].clone(), project_type, path);
+        // check if user supplied wakatime flag
+        let wakatime =
+            args.contains(&String::from("--wakatime")) || args.contains(&String::from("-w"));
+
+        create_project(
+            &cfg,
+            args[2].clone(),
+            args[3].clone(),
+            project_type,
+            path,
+            wakatime,
+        );
     } else {
         return Err(Error::InvalidLanguage(String::from(&args[2])));
     }
@@ -89,6 +100,7 @@ pub fn create_project(
     name: String,
     project_type: Option<String>,
     path: Option<String>,
+    wakatime: bool,
 ) {
     // if no path is supplied by user, assume current path
     let base_path = match path {
@@ -149,4 +161,11 @@ pub fn create_project(
 
     // write all relevant text to file
     fs::write(format!("{}/.gitignore", &project_path), gitignore_text).unwrap();
+
+    // create wakatime project file if necessary
+    if wakatime {
+        fs::File::create(format!("{}/.wakatime", &project_path)).unwrap(); // create file
+
+        fs::write(format!("{}/.wakatime", &project_path), &name).unwrap(); // write name of project to wakatime file
+    }
 }
