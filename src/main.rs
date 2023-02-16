@@ -25,6 +25,7 @@ pub struct ProjectType {
     pub name: String,            // name of project type
     pub description: String,     // description of project type for help menu
     pub files: Vec<ProjectFile>, // links to get files from
+    pub gitignore: Vec<String>, // files to be placed into a .gitignore file
 }
 
 /// Object to hold information for necessary project files
@@ -53,6 +54,9 @@ impl ::std::default::Default for Config {
                                     url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/default/main.tex".into(),
                                 }
                             ],
+                            gitignore: vec![
+                              "main.aux".into(), "main.fdb_latexmk".into(), "main.fls".into(), "main.log".into(), "main.out".into(), "main.synctex.gz".into(), "main.txt".into()  
+                            ],
                         },
                         ProjectType {
                             name: "hmcmath".into(),
@@ -68,7 +72,10 @@ impl ::std::default::Default for Config {
                                     path: ".".into(),
                                     url: "https://raw.githubusercontent.com/hmcmathematics/hmcpset-class/master/hmcpset.cls".into(),
                                 }
-                            ]
+                            ],
+                            gitignore: vec![
+                              "main.aux".into(), "main.fdb_latexmk".into(), "main.fls".into(), "main.log".into(), "main.out".into(), "main.synctex.gz".into(), "main.txt".into()  
+                            ],
                         }
                     ],
                 },
@@ -84,7 +91,10 @@ impl ::std::default::Default for Config {
                                     path: "./src".into(),
                                     url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/python/default/src/main.py".into()
                                 }
-                            ]
+                            ],
+                            gitignore: vec![
+                                
+                            ],
                         }                        
                     ]
                 }
@@ -109,7 +119,10 @@ fn main() {
         Ok(cfg) => cfg,
         Err(e) => {
             println!("Error loading configuration file: {}", e);
-            confy::store("pjcr", None, Config::default()).unwrap();
+            match confy::store("pjcr", None, Config::default()) {
+                Ok(_) => {println!("Restored configuration file to defaults")},
+                Err(e) => {println!("Failed to repair configuration file. Try deleting manually. Encountered error: {}", e)},
+            };
             Config::default()
         }
     };

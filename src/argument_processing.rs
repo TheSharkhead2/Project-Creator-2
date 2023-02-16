@@ -141,4 +141,12 @@ pub fn create_project(
 
         io::copy(&mut response.as_bytes(), &mut out).unwrap(); // copy data into file
     }
+
+    // create .gitignore file
+    fs::File::create(format!("{}/.gitignore", &project_path)).unwrap(); // create file to write to
+
+    let gitignore_text = project_type_object.gitignore.join("\n"); // concat all files with new line character
+
+    // write all relevant text to file
+    fs::write(format!("{}/.gitignore", &project_path), gitignore_text).unwrap();
 }
