@@ -6,6 +6,12 @@ mod information;
 
 use argument_processing::{parse_arguments, Error};
 
+/// Struct for gitignore files
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Gitignore {
+    pub files: Vec<String>,
+}
+
 /// Configuration object
 #[derive(Serialize, Deserialize)]
 pub struct Config {
@@ -24,8 +30,8 @@ pub struct Language {
 pub struct ProjectType {
     pub name: String,            // name of project type
     pub description: String,     // description of project type for help menu
+    pub gitignore: Gitignore, // gitignore files for project
     pub files: Vec<ProjectFile>, // links to get files from
-    pub gitignore: Vec<String>, // files to be placed into a .gitignore file
 }
 
 /// Object to hold information for necessary project files
@@ -47,6 +53,11 @@ impl ::std::default::Default for Config {
                         ProjectType {
                             name: "default".into(),
                             description: "A barebones latex project without a .cls file.".into(),
+                            gitignore: Gitignore {
+                                files: vec![
+                                  "main.aux".into(), "main.fdb_latexmk".into(), "main.fls".into(), "main.log".into(), "main.out".into(), "main.synctex.gz".into(), "main.txt".into()  
+                                ],
+                            },
                             files: vec![
                                 ProjectFile {
                                     name: "main.tex".into(),
@@ -54,13 +65,15 @@ impl ::std::default::Default for Config {
                                     url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/default/main.tex".into(),
                                 }
                             ],
-                            gitignore: vec![
-                              "main.aux".into(), "main.fdb_latexmk".into(), "main.fls".into(), "main.log".into(), "main.out".into(), "main.synctex.gz".into(), "main.txt".into()  
-                            ],
                         },
                         ProjectType {
                             name: "hmcmath".into(),
                             description: "The Harvey Mudd College LaTeX homework template.".into(),
+                            gitignore: Gitignore {
+                                files: vec![
+                                  "main.aux".into(), "main.fdb_latexmk".into(), "main.fls".into(), "main.log".into(), "main.out".into(), "main.synctex.gz".into(), "main.txt".into()  
+                                ],
+                            },
                             files: vec![
                                 ProjectFile {
                                     name: "main.tex".into(),
@@ -73,9 +86,6 @@ impl ::std::default::Default for Config {
                                     url: "https://raw.githubusercontent.com/hmcmathematics/hmcpset-class/master/hmcpset.cls".into(),
                                 }
                             ],
-                            gitignore: vec![
-                              "main.aux".into(), "main.fdb_latexmk".into(), "main.fls".into(), "main.log".into(), "main.out".into(), "main.synctex.gz".into(), "main.txt".into()  
-                            ],
                         }
                     ],
                 },
@@ -85,15 +95,17 @@ impl ::std::default::Default for Config {
                         ProjectType {
                             name: "default".into(),
                             description: "A template ideal for a quick python script".into(),
+                            gitignore: Gitignore {
+                                files: vec![
+                                    
+                                ],
+                            },
                             files: vec![
                                 ProjectFile {
                                     name: "main.py".into(),
                                     path: "./src".into(),
                                     url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/python/default/src/main.py".into()
                                 }
-                            ],
-                            gitignore: vec![
-                                
                             ],
                         }                        
                     ]
