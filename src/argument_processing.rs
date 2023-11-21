@@ -12,7 +12,7 @@ pub enum Error {
 
 /// The raw argument parser: takes in arguments from command line and desides what to do with them
 pub fn parse_arguments(args: Vec<String>, cfg: Config) -> Result<(), Error> {
-    println!("Arguments: {:?}\n", args); // print arguments for debugging
+    // println!("Arguments: {:?}\n", args); // print arguments for debugging
 
     // If user supplied 0 arguments give user basic info (the first argument is just file)
     if args.len() == 1 {
@@ -176,7 +176,7 @@ pub fn create_project(
     }
 
     // add all extra directories
-    for directory in project_type_object.extra_dirs {
+    for directory in project_type_object.extra_dirs.files {
         fs::create_dir_all(format!("{}/{}", project_path, directory)).unwrap();
     }
 }
