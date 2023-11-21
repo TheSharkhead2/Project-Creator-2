@@ -174,4 +174,9 @@ pub fn create_project(
         fs::write(format!("{}/.wakatime-project", &project_path), &name).unwrap();
         // write name of project to wakatime file
     }
+
+    // add all extra directories
+    for directory in project_type_object.extra_dirs {
+        fs::create_dir_all(format!("{}/{}", project_path, directory)).unwrap();
+    }
 }

@@ -32,6 +32,7 @@ pub struct ProjectType {
     pub description: String,     // description of project type for help menu
     pub gitignore: Gitignore, // gitignore files for project
     pub files: Vec<ProjectFile>, // links to get files from
+    pub extra_dirs: Vec<String>, // extra directories to add in project directory
 }
 
 /// Object to hold information for necessary project files
@@ -65,6 +66,9 @@ impl ::std::default::Default for Config {
                                     url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/latex/default/main.tex".into(),
                                 }
                             ],
+                            extra_dirs: vec![
+                                "images".into(),
+                            ]
                         },
                         ProjectType {
                             name: "hmcmath".into(),
@@ -85,6 +89,9 @@ impl ::std::default::Default for Config {
                                     path: ".".into(),
                                     url: "https://raw.githubusercontent.com/hmcmathematics/hmcpset-class/master/hmcpset.cls".into(),
                                 }
+                            ],
+                            extra_dirs: vec![
+                                "images".into(),
                             ],
                         }
                     ],
@@ -107,6 +114,7 @@ impl ::std::default::Default for Config {
                                     url: "https://raw.githubusercontent.com/TheSharkhead2/Project_Creator_2/main/templates/python/default/src/main.py".into()
                                 }
                             ],
+                            extra_dirs: vec![],
                         }                        
                     ]
                 }
