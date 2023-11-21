@@ -157,15 +157,21 @@ pub fn create_project(
     // create .gitignore file
     fs::File::create(format!("{}/.gitignore", &project_path)).unwrap(); // create file to write to
 
-    let gitignore_text = project_type_object.gitignore.files.join("\n"); // concat all files with new line character
+    let mut gitignore_text = project_type_object.gitignore.files.join("\n"); // concat all files with new line character
+
+    // add wakatime-project file to gitignore
+    if wakatime {
+        gitignore_text = gitignore_text + ".wakatime-project\n";
+    }
 
     // write all relevant text to file
     fs::write(format!("{}/.gitignore", &project_path), gitignore_text).unwrap();
 
     // create wakatime project file if necessary
     if wakatime {
-        fs::File::create(format!("{}/.wakatime", &project_path)).unwrap(); // create file
+        fs::File::create(format!("{}/.wakatime-project", &project_path)).unwrap(); // create file
 
-        fs::write(format!("{}/.wakatime", &project_path), &name).unwrap(); // write name of project to wakatime file
+        fs::write(format!("{}/.wakatime-project", &project_path), &name).unwrap();
+        // write name of project to wakatime file
     }
 }
